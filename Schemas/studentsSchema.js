@@ -1,4 +1,3 @@
-const mongodb = require('mongodb');
 const mongoose = require('mongoose');
 const PostSchema = mongoose.Schema({
     Name:{
@@ -15,5 +14,4 @@ const PostSchema = mongoose.Schema({
     }
 
 });
-
-module.exports = mongoose.model('Posts',PostSchema);
+module.exports = mongoose.model('Students',PostSchema);
