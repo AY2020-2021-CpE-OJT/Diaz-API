@@ -38,4 +38,16 @@ router.post('/',(req,res)=>{
         console.log("POST Attempt failed")
     });
 });
+
+router.delete('/:students', async (req, res)=>{
+    try{
+        const removedPost = await Post.deleteOne({_id: req.params.students});
+        res.json(removedPost);
+        console.clear();
+        console.log("Successfully Deleted Document")
+    }catch (err){
+    res.json({message:err});
+}
+});
+
 module.exports = router;
