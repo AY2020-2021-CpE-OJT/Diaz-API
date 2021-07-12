@@ -14,7 +14,6 @@ router.get('/', async (req,res)=> {
         res.json({message:err});
         console.log("GET attempt failed");
     }   
-    
 });
 //POST 
 router.post('/',(req,res)=>{
@@ -38,7 +37,7 @@ router.post('/',(req,res)=>{
         console.log("POST Attempt failed")
     });
 });
-
+//DELETE
 router.delete('/:students', async (req, res)=>{
     try{
         const removedPost = await Post.deleteOne({_id: req.params.students});
@@ -47,7 +46,21 @@ router.delete('/:students', async (req, res)=>{
         console.log("Successfully Deleted Document")
     }catch (err){
     res.json({message:err});
-}
+    }
 });
-
+//PATCH || MODIFY
+router.patch('/:students', async (req, res)=>{
+    try{
+        const updatedPost = await Post.updateOne(
+            {_id: req.params.students},{$set:{first_name:req.body.first_name},
+            $set:{last_name:req.body.last_name},
+            $set:{number1:req.body.number1},
+            $set:{number2:req.body.number2},
+            $set:{number3:req.body.number3} 
+        });
+        res.json(updatedPost);
+    }catch (err){
+    res.json({message:err});
+    }
+});
 module.exports = router;
