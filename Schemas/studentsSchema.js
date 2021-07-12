@@ -1,17 +1,22 @@
 const mongoose = require('mongoose');
 const PostSchema = mongoose.Schema({
-    Name:{
+    first_name:{
         type: String,
-        required: true
+        required: [true, 'First Name Field is Required']
     },
-    Course:{
-            type: String,
-            required: true
+    last_name:{
+        type: String,
+        required: [true, 'Last Name Field is Required']
     },
-    Year:{
-            type: String,
-            required: true
-    }
-
+    number1:{
+        type: String,
+        required: [true, 'First Number Field is Required']
+    },  
+    number2:{
+        type: String,
+    },
+    number3:{
+        type: String,
+    },
 });
-module.exports = mongoose.model('Students',PostSchema);
+module.exports = mongoose.model('students',PostSchema);
