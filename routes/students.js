@@ -65,8 +65,8 @@ router.patch('/:students', async (req, res)=>{
 });
 router.put('/:students', async (req,res) => {
     const PutPost = await Post.findByIdAndUpdate({_id: req.params.id}, req.body).then(function() {
-        Post.findOne({_id: req.params.id}).then(function(doc){
-            res.json(PutPost);
+        Post.findOne({_id: req.params.id}).then(function(PutPost){
+        res.json(PutPost);
         })
     });
 });
