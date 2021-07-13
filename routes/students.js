@@ -51,7 +51,7 @@ router.delete('/:students', async (req, res)=>{
 //PATCH || MODIFY
 router.patch('/:students', async (req, res)=>{
     try{
-        const updatedPost = await Post.update(
+        const updatedPost = await Post.updateOne(
             {_id: req.params.students},{$set:{first_name:req.body.first_name},
             $set:{last_name:req.body.last_name},
             $set:{number1:req.body.number1},
@@ -62,5 +62,12 @@ router.patch('/:students', async (req, res)=>{
     }catch (err){
     res.json({message:err});
     }
+});
+router.put('/:students', async (req,res) => {
+    const PutPost = await Post.findByIdAndUpdate({_id: req.params.id}, req.body).then(function() {
+        Post.findOne({_id: req.params.id}).then(function(doc){
+            res.json(PutPost);
+        })
+    });
 });
 module.exports = router;
