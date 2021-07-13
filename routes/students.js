@@ -49,7 +49,7 @@ router.delete('/:students', async (req, res)=>{
     }
 });
 //PATCH || MODIFY
-router.patch('/:students', async (req, res)=>{
+router.put('/:students', async (req, res)=>{
     try{
         const updatedPost = await Post.put(
             {_id: req.params.students},{$set:{first_name:req.body.first_name},
