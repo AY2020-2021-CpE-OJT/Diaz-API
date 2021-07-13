@@ -51,7 +51,7 @@ router.delete('/:students', async (req, res)=>{
 //PATCH || MODIFY
 router.patch('/:students', async (req, res)=>{
     try{
-        const updatedPost = await Post.updateOne(
+        const updatedPost = await Post.put(
             {_id: req.params.students},{$set:{first_name:req.body.first_name},
             $set:{last_name:req.body.last_name},
             $set:{number1:req.body.number1},
