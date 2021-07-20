@@ -15,7 +15,6 @@ router.post('/',  (req,res) =>{
                 const post = new Post({
                     sessionID: count,
                     username: req.body.username,
-                    accessToken: accessToken
                 }) 
                 post.save()
                 .then(data => {

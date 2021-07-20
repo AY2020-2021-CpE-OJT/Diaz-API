@@ -8,9 +8,5 @@ const PostSchema = mongoose.Schema({
         type: String,
         required: [false],
     },
-    accessToken:{
-        type: String,
-        required: [true, 'Please Enter username']
-    },
 });
 module.exports = mongoose.model('sessions',PostSchema);
