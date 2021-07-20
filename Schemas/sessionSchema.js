@@ -6,7 +6,7 @@ const PostSchema = mongoose.Schema({
     },
     username:{
         type: String,
-        required: [true, 'Please Enter username']
+        required: [false],
     },
     accessToken:{
         type: String,
