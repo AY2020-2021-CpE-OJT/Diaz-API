@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const PostSchema = mongoose.Schema({
+const studentsPostSchema = mongoose.Schema({
     first_name:{
         type: String,
         required: [true, 'First Name Field is Required']
@@ -19,4 +19,4 @@ const PostSchema = mongoose.Schema({
         type: String,
     },
 });
-module.exports = mongoose.model('students',PostSchema);
+module.exports = mongoose.model('students',studentsPostSchema);

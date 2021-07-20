@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../Schemas/studentsSchema');
-
+const checkauth = require('../Auth.js')
 //GET
-router.get('/', async (req,res)=> {
+router.get('/',checkauth, async (req,res)=> {
     try{
         const posts = await Post.find();
         res.json(posts);
@@ -49,25 +49,11 @@ router.delete('/:students', async (req, res)=>{
     }
 });
 //PATCH || MODIFY
-router.patch('/:students', async (req, res)=>{
-    try{
-        const updatedPost = await Post.updateOne(
-            {_id: req.params.students},{$set:{first_name:req.body.first_name},
-            $set:{last_name:req.body.last_name},
-            $set:{number1:req.body.number1},
-            $set:{number2:req.body.number2},
-            $set:{number3:req.body.number3} 
+router.put('/:students', function(req,res,next){
+    Post.findByIdAndUpdate({_id:req.params.students},req.body).then(function(){
+        Post.findOne({_id:req.params.students}).then(function(updatedInfo){
+            res.send(updatedInfo);
         });
-        res.json(updatedPost);
-    }catch (err){
-    res.json({message:err});
-    }
-});
-router.put('/:students', async (req,res) => {
-    const PutPost = await Post.findByIdAndUpdate({_id: req.params.id}, req.body).then(function() {
-        Post.findOne({_id: req.params.id}).then(function(PutPost){
-        res.json(PutPost);
-        })
-    });
+    }).catch(next);
 });
 module.exports = router;
