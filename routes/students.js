@@ -16,7 +16,7 @@ router.get('/',checkauth, async (req,res)=> {
     }   
 });
 //POST 
-router.post('/',(req,res)=>{
+router.post('/',checkauth,async(req,res)=>{
     const post = new Post({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -38,7 +38,7 @@ router.post('/',(req,res)=>{
     });
 });
 //DELETE
-router.delete('/:students', async (req, res)=>{
+router.delete('/:students',checkauth, async (req, res)=>{
     try{
         const removedPost = await Post.deleteOne({_id: req.params.students});
         res.json(removedPost);
@@ -49,7 +49,7 @@ router.delete('/:students', async (req, res)=>{
     }
 });
 //PATCH || MODIFY
-router.put('/:students', function(req,res,next){
+router.put('/:students',checkauth,async function(req,res,next){
     Post.findByIdAndUpdate({_id:req.params.students},req.body).then(function(){
         Post.findOne({_id:req.params.students}).then(function(updatedInfo){
             res.send(updatedInfo);
