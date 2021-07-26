@@ -15,6 +15,7 @@ router.post('/',  (req,res) =>{
                 const post = new Post({
                     sessionID: count,
                     username: req.body.username,
+                    time: req.body.time
                 }) 
                 post.save()
                 .then(data => {

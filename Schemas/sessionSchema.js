@@ -8,5 +8,9 @@ const PostSchema = mongoose.Schema({
         type: String,
         required: [false],
     },
+    time:{
+        type: String,
+        required: [true],
+    },
 });
 module.exports = mongoose.model('sessions',PostSchema);

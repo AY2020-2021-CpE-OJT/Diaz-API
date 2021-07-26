@@ -28,7 +28,8 @@ index.use('/passwords', passwordRoute);
 //For dotenv, to secure database 
 require('dotenv/config');
 
-index.post('/login', (req,res)=>{
+//TEST FOR GETTING ACCESS TOKENS
+/*index.post('/login', (req,res)=>{
         const password = req.body.password
         if (password == process.env.UNIVERSAL_PASSWORD){
                 const accessToken = jwt.sign(password, process.env.ACCESS_TOKEN_SECRET)
@@ -38,7 +39,8 @@ index.post('/login', (req,res)=>{
                 res.json("Access Denied!")
                 console.log("Access Denied!");
         }
-});
+});*/
+
 //To Connect to the Database
 mongoose.connect(process.env.DB_CONNECTION, { 
         useNewUrlParser: true,
